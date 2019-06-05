@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.ConsultaDTO;
+import com.example.demo.dto.PaginadorDTO;
 import com.example.demo.model.Consulta;
 import com.example.demo.service.ConsultaService;
 
@@ -34,12 +35,12 @@ public class ConsultaController {
 	}
 	
 	@GetMapping()
-	public ResponseEntity<List<Consulta>> getConsultasPaginadas(
+	public ResponseEntity<PaginadorDTO<Consulta>> getConsultasPaginadas(
 			@RequestParam( name ="idMedico", required = false) Long idMedico,
 			@RequestParam(name = "data", required = false) String data,
 			@RequestParam(name = "pagina") Integer pagina
 			) {
-	    return new ResponseEntity<List<Consulta>>(consultaService.getConsultasPaginadas(idMedico, data, PageRequest.of(pagina - 1, 10)), HttpStatus.OK);
+	    return new ResponseEntity<PaginadorDTO<Consulta>>(consultaService.getConsultasPaginadas(idMedico, data, PageRequest.of(pagina - 1, 10)), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")

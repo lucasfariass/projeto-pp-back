@@ -2,16 +2,16 @@ package com.example.demo.dto;
 
 public class MedicoDTO {
 	
-	private long id;
+	private Long id;
     private String nome;
     private String especialidade;
     private ConsultorioDTO consultorio;
     
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	

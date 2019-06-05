@@ -11,12 +11,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.SelectDTO;
 import com.example.demo.model.Medico;
+import com.example.demo.service.ConsultaService;
 import com.example.demo.service.MedicoService;
 
 @CrossOrigin(origins="http://localhost:4200")
@@ -26,6 +29,9 @@ public class MedicoController {
 	
 	@Autowired
 	private MedicoService medicoService;
+	
+	@Autowired
+	private ConsultaService consultaService;
 
 	@GetMapping("/select")
 	public ResponseEntity<List<SelectDTO>> getMedicos() {
@@ -37,13 +43,9 @@ public class MedicoController {
 		return new ResponseEntity<Optional<Medico>>(medicoService.getMedicoById(id), HttpStatus.OK);
 	}
 	
-//	TODO: Paginação de medicos
-//	@GetMapping()
-//	public ResponseEntity<Page<Medico>> getMedicosPaginados(
-//		@RequestParam("medico") long medico,
-//		@RequestParam("data") String data,
-//		@RequestParam("pagina") Pageable pagina
-//	) {
-//		return new ResponseEntity<Page<Medico>>(medicoService.getMedicosPaginados(pagina));
-//	}
+	@PostMapping()
+	public ResponseEntity<Medico> postMedico(@RequestBody Medico medico) {
+		return new ResponseEntity<Medico>(medicoService.postMedico(medico), HttpStatus.CREATED);
+	}
+	
 }

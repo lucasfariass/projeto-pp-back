@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.SelectDTO;
+import com.example.demo.model.Consultorio;
 import com.example.demo.model.Medico;
 import com.example.demo.repository.ConsultorioRepository;
 import com.example.demo.repository.MedicoRepository;
@@ -38,6 +39,15 @@ public class MedicoService {
 	
 	public Page<Medico> getMedicosPaginados(Pageable pageable) {
 		return medicoRepository.findAll(pageable);
+	}
+	
+	public Medico postMedico(Medico medico) {
+		medico.setConsultorio(this.postConsultorio(medico.getConsultorio()));
+		return medicoRepository.save(medico);
+	}
+	
+	public Consultorio postConsultorio(Consultorio consultorio) {
+		return consultarioRepository.save(consultorio);
 	}
 	
 	private SelectDTO mapperMedico(Medico medico) {

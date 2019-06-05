@@ -2,7 +2,7 @@ package com.example.demo.dto;
 
 public class ConsultorioDTO {
 	
-	private long id;
+	private Long id;
 	private String nome;
     private String rua;
     private String bairro;
@@ -10,11 +10,11 @@ public class ConsultorioDTO {
     private String cidade;
     private String estado;
     
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	

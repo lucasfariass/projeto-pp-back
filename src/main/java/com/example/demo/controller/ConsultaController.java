@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.ConsultaDTO;
 import com.example.demo.model.Consulta;
 import com.example.demo.service.ConsultaService;
 
@@ -21,7 +22,7 @@ public class ConsultaController {
 	private ConsultaService consultaService;
 
 	@PostMapping()
-	public ResponseEntity<Consulta> postConsulta(@RequestBody Consulta consulta) {
+	public ResponseEntity<Consulta> postConsulta(@RequestBody ConsultaDTO consulta) {
 		return new ResponseEntity<Consulta>(consultaService.postConsulta(consulta), HttpStatus.CREATED);
 	}
 }

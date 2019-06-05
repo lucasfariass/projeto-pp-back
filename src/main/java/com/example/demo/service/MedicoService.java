@@ -36,11 +36,7 @@ public class MedicoService {
 	public Optional<Medico> getMedicoById(Long id) {
 		return medicoRepository.findById(id);
 	}
-	
-	public Page<Medico> getMedicosPaginados(Pageable pageable) {
-		return medicoRepository.findAll(pageable);
-	}
-	
+		
 	public Medico postMedico(Medico medico) {
 		medico.setConsultorio(this.postConsultorio(medico.getConsultorio()));
 		return medicoRepository.save(medico);

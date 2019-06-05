@@ -1,8 +1,11 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.ConsultaDTO;
@@ -28,5 +31,9 @@ public class ConsultaService {
 				.orElseThrow(() -> new EntityNotFoundException())
 				);
 		return consultaRepository.save(consultaEntidade);
+	}
+	
+	public List<Consulta> getConsultasPaginadas(Long idMedico, String data, Pageable page) {
+		return consultaRepository.findAll(ConsultaSpecification.byFilter(idMedico, data), page).getContent();
 	}
 }

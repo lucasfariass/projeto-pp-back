@@ -36,4 +36,9 @@ public class ConsultaService {
 	public List<Consulta> getConsultasPaginadas(Long idMedico, String data, Pageable page) {
 		return consultaRepository.findAll(ConsultaSpecification.byFilter(idMedico, data), page).getContent();
 	}
+	
+	public String deleteConsulta(Long id) {
+		consultaRepository.deleteById(id);
+		return "Consulta excluida";
+	}
 }
